@@ -11,6 +11,7 @@ const markdownEscape = (string) =>
     [/\]/g, "\\]"],
     [/_/g, "\\_"],
     [/`/g, "\\`"],
+    [/​/g, ""] // remove zero width spaces
   ].reduce(
     (string, replacement) => string.replace(replacement[0], replacement[1]),
     string
@@ -80,7 +81,7 @@ var blockBold = {
     //Translate children
     const { markdown, images } = translate(element, true);
     return {
-      markdown: `\n**${unbold(markdown)}**`,
+      markdown: `​**${unbold(markdown)}**`,
       images,
     };
   },
